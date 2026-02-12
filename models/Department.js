@@ -30,7 +30,9 @@ const departmentSchema = new mongoose.Schema({
   descripcion: {
     type: String,
     required: [true, 'La descripción es necesaria'],
-    minlength: [10, 'Haz una descripción un poco más larga']
+    minlength: [10, 'Haz una descripción un poco más larga, al menos 10 caracteres'],
+    maxlength: [250, 'La descripción no puede exceder los 500 caracteres'],
+    trim: true
   }
 });
 
