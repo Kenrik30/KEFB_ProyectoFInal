@@ -9,6 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/users', require('./routes/usersRoutes'));
 app.use('/api/departments', require('./routes/departmentsRoutes'));
+app.use('/api/beaches', require('./routes/beachesRoutes'));
+
 createAdmin();
 app.get('/api/status', (req, res) => {
     res.json({ status: 'conectado' });
