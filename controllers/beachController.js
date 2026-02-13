@@ -1,5 +1,4 @@
 const Beach = require('../models/Beach');
-const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -7,7 +6,7 @@ require('dotenv').config();
 exports.createBeach = async (req, res) => {
     try {
         const { titulo,fecha,descripcion, departamento } = req.body;
-        const newBeach = new Beach({ titulo, fecha, descripcion, departamento, usuario: req.user._id });
+        const newBeach = new Beach({ titulo, fecha, descripcion, departamento, usuario: req.user.id });
         await newBeach.save();
 
         res.status(201).json({ msg: 'Playa creada exitosamente' });
@@ -23,7 +22,8 @@ exports.createBeach = async (req, res) => {
         }
         // 3. Manejar errores desconocidos
         res.status(500).json({ msg: 'Error interno del servidor' });
-    };
+    }
+};
 
     exports.getBeaches = async (req, res) => {
         try {
@@ -37,7 +37,6 @@ exports.createBeach = async (req, res) => {
         } catch (error) {
             res.status(500).json({ msg: 'Error interno del servidor' });
         }
-
     };
 
     exports.getBeachById = async (req, res) => {
@@ -49,7 +48,8 @@ exports.createBeach = async (req, res) => {
         }
         catch (error) {
             res.status(500).json({ msg: 'Error interno del servidor' });
-        }};
+        }
+    };
 
     exports.updateBeach = async (req, res) => {
         try {
@@ -72,4 +72,12 @@ exports.createBeach = async (req, res) => {
             res.status(500).json({ msg: 'Error interno del servidor' });  
         }
     };
-};
+
+    exports.deleteBeach = async (req, res) => {
+        try {
+            await Beach.findByIdAndDelete(req.params.id);
+            res.json({ msg: 'Playa eliminada exitosamente' });
+        } catch (error) {
+            res.status(500).json({ msg: 'Error interno del servidor' });
+        }
+    };

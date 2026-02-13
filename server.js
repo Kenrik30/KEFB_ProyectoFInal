@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/users', require('./routes/usersRoutes'));
 app.use('/api/departments', require('./routes/departmentsRoutes'));
-app.use('/api/beaches', require('./routes/beachesRoutes'));
+app.use('/api/beaches', require('./routes/beachRoutes'));
+app.use('/api/mountains', require('./routes/mountainRoutes'));
 
 createAdmin();
 app.get('/api/status', (req, res) => {
