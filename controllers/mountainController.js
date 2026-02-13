@@ -2,7 +2,7 @@ const Mountain = require('../models/Mountain');
 exports.createMountain = async (req, res) => {
     try {
         const { titulo, fecha, descripcion, departamento } = req.body;
-        const newMountain = new Mountain({ titulo, fecha, descripcion, departamento, usuario: req.user._id });
+        const newMountain = new Mountain({ titulo, fecha, descripcion, departamento, usuario: req.user.id });
         await newMountain.save();
 
         res.status(201).json({ msg: 'Publicación de montaña creada exitosamente' });
