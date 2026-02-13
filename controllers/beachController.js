@@ -3,11 +3,11 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-
+//Para crear publicaciones de lugar 
 exports.createBeach = async (req, res) => {
     try {
-        const { nombre, descripcion } = req.body;
-        const newBeach = new Beach({ nombre, descripcion });
+        const { titulo,fecha,descripcion, departamento } = req.body;
+        const newBeach = new Beach({ titulo, fecha, descripcion, departamento, usuario: req.user._id });
         await newBeach.save();
 
         res.status(201).json({ msg: 'Playa creada exitosamente' });
@@ -27,9 +27,9 @@ exports.createBeach = async (req, res) => {
 
     exports.getBeaches = async (req, res) => {
         try {
-            const {nombre, descripcion} = req.query;
+            const {titulo, descripcion} = req.query;
             let query = {};
-            if (nombre) query.nombre = { $regex: nombre, $options: 'i' };
+            if (titulo) query.titulo = { $regex: titulo, $options: 'i' };
             if (descripcion) query.descripcion = { $regex: descripcion, $options: 'i' };
 
             const beaches = await Beach.find(query);
