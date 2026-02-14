@@ -53,3 +53,4 @@ const nightSchema = new mongoose.Schema({
         timestamps: true
     });
 
+module.exports = mongoose.model('Night', nightSchema);
