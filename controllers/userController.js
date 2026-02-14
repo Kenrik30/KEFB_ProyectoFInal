@@ -33,6 +33,34 @@ exports.createUser = async (req, res) => {
     }
 };
 
+exports.register = async (req, res) => {
+    try {
+        const { nombre, apellido, email, nUsuario, password } = req.body;
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        const newUser = new User({ nombre, apellido, email, nUsuario, password: hashedPassword });
+        await newUser.save();
+        res.status(201).json({ msg: 'Registro exitoso, ahora puedes iniciar sesión' });
+    } catch (error) {
+        // 1. Manejar errores de validación (required, enum, match)
+        if (error.name === 'ValidationError') {
+            const errores = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({
+                ok: false,
+                errores 
+            });
+        }   
+        // 2. Manejar error de campo duplicado (Email unique)
+        if (error.code === 11000) {
+            return res.status(400).json({
+                ok: false,
+                errores: ['El correo electrónico ya está registrado']
+            });
+        }
+        res.status(500).json({ error: error.message });
+    }
+};
+
 exports.login = async (req, res) => {
     try {
         const { email, password } = req.body;
