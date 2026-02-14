@@ -11,7 +11,7 @@ app.use('/api/users', require('./routes/usersRoutes'));
 app.use('/api/departments', require('./routes/departmentsRoutes'));
 app.use('/api/beaches', require('./routes/beachRoutes'));
 app.use('/api/mountains', require('./routes/mountainRoutes'));
-
+app.use('/api/volcanos', require('./routes/volcanosRoutes'));
 createAdmin();
 app.get('/api/status', (req, res) => {
     res.json({ status: 'conectado' });
