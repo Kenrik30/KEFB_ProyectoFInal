@@ -25,7 +25,7 @@ exports.createVolcano = async (req, res) => {
     }   
 };
 
-exports.getVolcanoes = async (req, res) => {
+exports.getVolcanos = async (req, res) => {
     try {
         const {titulo, descripcion} = req.query;
         let query = {};
