@@ -76,7 +76,7 @@ exports.createBeach = async (req, res) => {
     exports.deleteBeach = async (req, res) => {
         try {
             await Beach.findByIdAndDelete(req.params.id);
-            res.json({ msg: 'Playa eliminada exitosamente' });
+            res.json({ msg: 'Publicacion Playa eliminada exitosamente' });
         } catch (error) {
             res.status(500).json({ msg: 'Error interno del servidor' });
         }
