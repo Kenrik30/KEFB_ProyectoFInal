@@ -1,7 +1,6 @@
-const Night = require('../models/nightModel');
+const Night = require('../models/Night');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { watch } = require('../models/Beach');
 require('dotenv').config();
 
 //Para crear publicaciones de lugar

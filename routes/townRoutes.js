@@ -5,12 +5,12 @@ const checkRole = require('../middlewares/checkRoleMiddleware');
 const parkController = require('../controllers/parkController');    
 
 //Rutas publicas para consulta de parques
-router.get('/', parkController.getParks);
-router.get('/:id', parkController.getParkById);
+router.get('/', townController.getParks);
+router.get('/:id', townController.getParkById);
 
 //Rutas privadas para administradores
-router.post('/', auth, checkRole('ADMIN_ROLE'), parkController.createPark);
-router.put('/:id', auth, checkRole('ADMIN_ROLE'), parkController.updatePark);
-router.delete('/:id', auth, checkRole('ADMIN_ROLE'), parkController.deletePark);    
+router.post('/', auth, checkRole('ADMIN_ROLE'), townController.createPark);
+router.put('/:id', auth, checkRole('ADMIN_ROLE'), townController.updatePark);
+router.delete('/:id', auth, checkRole('ADMIN_ROLE'), townController.deletePark);    
 
 module.exports = router;

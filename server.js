@@ -11,7 +11,11 @@ app.use('/api/users', require('./routes/usersRoutes'));
 app.use('/api/departments', require('./routes/departmentsRoutes'));
 app.use('/api/beaches', require('./routes/beachRoutes'));
 app.use('/api/mountains', require('./routes/mountainRoutes'));
+app.use('/api/night', require('./routes/nightRoutes'));
 app.use('/api/volcanos', require('./routes/volcanosRoutes'));
+app.use('/api/parks', require('./routes/parkRoutes'));
+app.use('/api/foods', require('./routes/foodRoutes'));
+app.use('/api/towns', require('./routes/townRoutes'));
 createAdmin();
 app.get('/api/status', (req, res) => {
     res.json({ status: 'conectado' });

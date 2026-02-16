@@ -1,4 +1,7 @@
 const Mountain = require('../models/Mountain');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 exports.createMountain = async (req, res) => {
     try {
         const { titulo, fecha, descripcion, departamento } = req.body;
